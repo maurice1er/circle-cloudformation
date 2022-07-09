@@ -7,19 +7,19 @@ orbs:
 # Define the jobs we want to run for this project
 jobs:
 
-  # create_infrastructure: 
-  #   docker:
-  #     - image: amazon/aws-cli
-  #   steps:
-  #     - checkout
-  #     - add_ssh_keys:
-  #         fingerprints: ["10:4b:1a:d5:55:83:83:74:21:99:e4:c9:51:f6:fa:84"]
-  #     - run:
-  #         name: Create Cloudformation Stack
-  #         command: |
-  #           aws cloudformation deploy --template-file ec2-aws.yml \
-  #             --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-  #             --region us-east-1 
+  create_infrastructure: 
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: ["3d:0a:52:80:0c:0b:88:56:fd:94:3b:76:2c:c3:7a:63"]
+      - run:
+          name: Create Cloudformation Stack
+          command: |
+            aws cloudformation deploy --template-file ec2-aws.yml \
+              --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+              --region us-east-1 
 
   # Exercise: Config and Deployment
   configure_infrastructure: 
@@ -45,6 +45,7 @@ workflows:
   myWorkflow:
     jobs:
       - configure_infrastructure 
+      - create_infrastructure
 
 
 
