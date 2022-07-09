@@ -1,0 +1,8 @@
+--- 
+- name: ansible 
+  hosts: ubuntu 
+  become: true
+  tasks:
+    - name: echo hello with shell 
+      shell: |
+        echo "Hello world"
